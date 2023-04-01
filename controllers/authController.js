@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes');
 const { ACCOUNT_TYPES } = require('../constant/index')
+const CustomError = require('../errors');
 
 
 
@@ -19,12 +20,12 @@ const createSeller = async (req, res) => {
      const checkIfEmailExites = await User.findOne({ email })
 
      if (checkIfEmailExites) {
-          throw new Error(`Email alredy exits`)
+          throw new CustomError.ConflictError(`Email alredy exits`)
      }
 
      const checkIfNumberExites = await User.findOne({ number });
      if (checkIfNumberExites) {
-          throw new Error(`Number alredy exits`)
+          throw new CustomError.ConflictError(`Number alredy exits`)
      }
 
 

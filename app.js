@@ -24,14 +24,15 @@ const port = process.env.PORT || 4000
 const connectDB = require('./DB/connect');
 
 
-
+//require Routes
 const authUser = require('./routes/authRouter');
-const SellerRouter = require('./routes/sellerRouter')
+const SellerRouter = require('./routes/sellerRouter');
+const productRouter = require('./routes/productRouter');
 
 app.get('/', (req, res) => {
-     res.json({
-          message: 'Welcome to MGT',
-     })
+  res.json({
+    message: 'Welcome to MGT',
+  })
 })
 
 
@@ -53,7 +54,8 @@ app.use(express.static(path.join(__dirname, "./public")));
 
 //routes
 app.use('/api/v1/auth', authUser);
-app.use('/api/v1/users',SellerRouter);
+app.use('/api/v1/sellers', SellerRouter);
+app.use('/api/v1/products', productRouter);
 
 
 //ErrorHandlerMiddleware
@@ -76,14 +78,14 @@ app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 const start = async () => {
-     try {
-       await connectDB(process.env.MONGO_URI)
-       app.listen(port,() => {
-          console.log(`Listing on port ${port}...`);
-       });   
-     } catch (error) {
-        console.log(error)  
-     }
+  try {
+    await connectDB(process.env.MONGO_URI)
+    app.listen(port, () => {
+      console.log(`Listing on port ${port}...`);
+    });
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 start()

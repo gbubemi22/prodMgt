@@ -2,12 +2,20 @@ const express = require('express');
 const router = express.Router();
 
 
-const sellers = require('../controllers/sellerController')
+const {
+     sellers,
+     getOneSeller
+} = require('../controllers/sellerController')
 
 
 router
-.route('/sellers')
+.route('/')
 .get(sellers)
+
+
+router
+.route('/:id')
+.get(getOneSeller);
 
 
 module.exports = router;

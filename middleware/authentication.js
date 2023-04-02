@@ -9,8 +9,8 @@ const authenticateUser = async (req, res, next) => {
   }
 
   try {
-    const {  userId, type } = isTokenValid({ token });
-    req.user = {  userId, type };
+    const {  userId, userType } = isTokenValid({ token });
+    req.user = {  userId, userType };
     next();
   } catch (error) {
     throw new CustomError.UnauthenticatedError('Authentication Invalid');
@@ -19,7 +19,7 @@ const authenticateUser = async (req, res, next) => {
 
 const authorizePermissions = (...roles) => {
   return (req, res, next) => {
-    if (!type.includes(req.user.type)) {
+    if (!userType.includes(req.user.tuserTypeype)) {
       throw new CustomError.UnauthorizedError(
         'Unauthorized to access this route'
       );

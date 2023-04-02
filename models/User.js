@@ -26,8 +26,8 @@ const UserSchema = new mongoose.Schema({
      },
 
      password: {
-         type: String,
-         required: true,
+          type: String,
+          required: true,
      },
 
      image: {
@@ -49,7 +49,7 @@ const UserSchema = new mongoose.Schema({
           type: Boolean,
           default: false,
      },
-     isEmailVerified:{
+     isEmailVerified: {
           type: Boolean,
           default: false,
      },
@@ -62,7 +62,7 @@ const UserSchema = new mongoose.Schema({
 
 
 
-}, {timestamps: true})
+}, { timestamps: true })
 
 
 UserSchema.pre('save', async function () {
@@ -70,11 +70,11 @@ UserSchema.pre('save', async function () {
      if (!this.isModified('password')) return;
      const salt = await bcrypt.genSalt(10);
      this.password = await bcrypt.hash(this.password, salt);
-   });
+});
 
-   UserSchema.methods.comparePassword = async function (canditatePassword) {
+UserSchema.methods.comparePassword = async function (canditatePassword) {
      const isMatch = await bcrypt.compare(canditatePassword, this.password);
      return isMatch;
-   };
+};
 
 module.exports = mongoose.model("User", UserSchema);

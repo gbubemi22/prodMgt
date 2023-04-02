@@ -18,5 +18,32 @@ const sellers = async (req, res) => {
      }
 
 
+//Get One seller
+const getOneSeller = async (req, res) => {
 
-module.exports = sellers;
+     const { sellerId } = req.params;
+
+     const result = await User.findOne({ sellerId , userType: 'seller' })
+
+     if(!result ) {
+       throw new CustomError.NotFoundError(`Seller Not Found`)   
+     }
+
+     res.status(StatusCodes.OK).json({
+          message: true,
+          seller: result
+     })
+}
+
+
+
+
+
+
+
+
+
+module.exports = {
+     sellers,
+     getOneSeller
+};

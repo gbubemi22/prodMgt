@@ -5,13 +5,26 @@ const router = express.Router()
 
 
 
-const createSeller = require('../controllers/authController');
+const {
+     createSeller,
+     login,
+     logout,
+} = require('../controllers/authController');
 
 
 
 router
 .route('/seller')
 .post(createSeller);
+
+router
+.route('/login')
+.post(login);
+
+
+router
+.route('/logout')
+.get(logout);
 
 
 

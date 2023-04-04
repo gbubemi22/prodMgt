@@ -10,7 +10,7 @@ const {
      updateProduct,
      deleteProduct,
      deletevarieties,
-    // getAllProducts1
+     
 } = require('../controllers/productController');
 
 
@@ -33,7 +33,7 @@ router
 
 router
 .route('/verieties/:id')
-.delete(deletevarieties)
+.get(deletevarieties)
 
 
 module.exports = router;

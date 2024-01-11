@@ -1,11 +1,6 @@
-
-
 module.exports = {
-
-
-     ACCOUNT_TYPES: {
-          BUYER: 'buyer',
-          SELLER: 'seller',
-     }
-
-}
+  ACCOUNT_TYPES: {
+    BUYER: "buyer",
+    SELLER: "seller",
+  },
+};
